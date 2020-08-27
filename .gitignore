@@ -1,3 +1,6 @@
+# Ignore web scraping practice activity.
+Web_Scraping_Practice.ipynb
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
