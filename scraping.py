@@ -1,11 +1,11 @@
-##### Import Web Scraping tools and dependencies ####
+##### Import Web Scraping tools and dependencies #####
 
-# Import Splinter and BeautifulSoup.
+# Import Splinter, BeautifulSoup, and Pandas.
 from splinter import Browser
 from bs4 import BeautifulSoup
 import pandas as pd
 
-##### Initialize web scraping with automated browse
+##### Initialize web scraping with automated browser #####
 
 # Set the executable path and initialize automated Chrome browser(Mac OS).
 executable_path = {'executable_path': '/usr/local/bin/chromedriver'}
@@ -15,7 +15,7 @@ browser = Browser('chrome', **executable_path, headless=False)
 url = 'https://mars.nasa.gov/news/'
 browser.visit(url)
 
-# Optional delay for loading the page
+# Optional delay for loading the page.
 browser.is_element_present_by_css("ul.item_list li.slide", wait_time=1)
 
 # Parse html data.
@@ -23,7 +23,7 @@ html = browser.html
 news_soup = BeautifulSoup(html, 'html.parser')
 slide_elem = news_soup.select_one('ul.item_list li.slide')
 
-# Look for specific data for a particular 
+# Look for specific data within "slide" as parent element.
 slide_elem.find("div", class_='content_title')
 
 # Use the parent element to find the first `a` tag and save it as `news_title`
