@@ -20,11 +20,9 @@ def index():
 def scrape():
    mars = mongo.db.mars
    mars_data = scraping.scrape_all()
+   # Updating database.
    mars.update({}, mars_data, upsert=True)
    return "Scraping Successful!"
-
-# Updating database.
-.update(query_parameter, data, options)
 
 if __name__ == "__main__":
    app.run()
