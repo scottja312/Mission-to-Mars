@@ -8,9 +8,15 @@ import datetime as dt
 
 # Intialize browser, create data dictionary, end WebDriver, and return scraped data.
 def scrape_all():
-    # Initiate headless driver for deployment.
-    browser = Browser("chrome", executable_path="chromedriver", headless=True)
+    # Set the executable path and initialize automated Chrome browser(Mac OS).
+    executable_path = {'executable_path': '/usr/local/bin/chromedriver'}
+    browser = Browser('chrome', **executable_path, headless=False)
+    
     news_title, news_paragraph = mars_news(browser)
+    
+    # Initiate headless driver for deployment.
+    #browser = Browser("chrome", executable_path="chromedriver", headless=True)
+    #news_title, news_paragraph = mars_news(browser)
     
     # Run all scraping functions and store results in dictionary.
     data = {
@@ -23,10 +29,6 @@ def scrape_all():
     # Ends automated browser from running and returns data.
     browser.quit()
     return data
-
-# Set the executable path and initialize automated Chrome browser(Mac OS).
-#executable_path = {'executable_path': '/usr/local/bin/chromedriver'}
-#browser = Browser('chrome', **executable_path, headless=False)
 
 ##### Initialize web scraping with automated browser #####
 def mars_news(browser):
